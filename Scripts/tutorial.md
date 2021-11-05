@@ -1,5 +1,6 @@
-Informações importantes
-    Durante o processo, configuraremos alguns IPs, deste modo é interessante definir um IP fixo para o servidor para que não seja necessário ficar reconfigurando.
+##### INFORMAÇÕES IMPORTANTES
+
+Durante o processo, configuraremos alguns IPs, deste modo é interessante definir um IP fixo para o servidor para que não seja necessário ficar reconfigurando.
 
 
 
@@ -7,7 +8,7 @@ Informações importantes
 sudo apt update
 sudo apt -y upgrade
 
-==== Instalando Docker ====
+##### Instalando Docker
 
     sudo curl -fsSL https://get.docker.com/ | bash
     sudo docker version
@@ -16,7 +17,7 @@ sudo apt -y upgrade
     sudo usermod -aG docker $(whoami) 
 
 
-==== Subindo Grafana pelo Docker ====
+##### Subindo Grafana pelo Docker
 
     docker volume create grafana-storage
     docker run -d -p 3000:3000 --name grafana --mount type=volume,src=grafana-storage,dst=/var/lib/grafana grafana/grafana-enterprise:8.2.1-ubuntu
@@ -25,7 +26,7 @@ sudo apt -y upgrade
     docker container ls
 
 
-==== Instalando o MQTT ====
+##### Instalando o MQTT
 
     sudo wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
     sudo apt-key add mosquitto-repo.gpg.key
@@ -43,13 +44,13 @@ sudo apt -y upgrade
     sudo apt -y install mosquitto-clients
 
 
-==== Tenstando publicação e inscrição do MQTT ====
+##### Tenstando publicação e inscrição do MQTT
 
     mosquitto_sub -h localhost -t "sensor/temperatura"
     mosquitto_pub -h localhost -t "sensor/temperatura" -m "10"
 
 
-==== Instalação e configurando o InfluxDB ====
+##### Instalação e configurando o InfluxDB
 
     sudo dpkg-reconfigure tzdata
 
@@ -73,14 +74,13 @@ sudo apt -y upgrade
             enabled = true
             bind-address = ":8086"
                 
-                //Descomente estas duas linhas
 
     sudo systemctl restart influxdb
     sudo systemctl status influxdb
 
     sudo ufw allow 8086/tcp
 
-==== Adicionando usuários e database ====
+##### Adicionando usuários e database
 
     influx -execute "CREATE USER "admin" WITH PASSWORD 'adminInflux@projeto' WITH ALL PRIVILEGES;"
     influx -execute "CREATE USER "telegraf" WITH PASSWORD 'telegraf@projeto' WITH ALL PRIVILEGES;"
@@ -90,7 +90,7 @@ sudo apt -y upgrade
 
 
 
-==== Instalando e configurando o Telegraf ====
+##### Instalando e configurando o Telegraf
 
     sudo apt -y install telegraf
 
