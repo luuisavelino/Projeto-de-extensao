@@ -1,12 +1,13 @@
-##### INFORMAÇÕES IMPORTANTES
+### INFORMAÇÕES IMPORTANTES
 
 Durante o processo, configuraremos alguns IPs, deste modo é interessante definir um IP fixo para o servidor para que não seja necessário ficar reconfigurando.
 
+#
 
-
-
-sudo apt update
-sudo apt -y upgrade
+## Getting Started
+#### Atualizando o servidor
+    sudo apt update
+    sudo apt -y upgrade
 
 ##### Instalando Docker
 
@@ -138,3 +139,19 @@ sudo apt -y upgrade
     sudo service telegraf restart
     sudo service influxdb status
     sudo service telegraf status
+    
+#### Gerando dados de teste
+##### Este item ainda não foi finalizado :/
+
+    cd ~
+    sudo mkdir shell_script
+    cd shell_script/
+    sudo vim gerarDados.sh
+
+        #!/bin/sh
+
+        while :;
+        do;
+        done
+
+    ./gerarDados.sh
