@@ -1,10 +1,13 @@
 ### INFORMAÇÕES IMPORTANTES
-
+Utilizei o ubuntu-20.04.3-live-server-amd64 como servidor.
+Esta iso foi rodada na VMware 16.1.2
 Durante o processo, configuraremos alguns IPs, deste modo é interessante definir um IP fixo para o servidor para que não seja necessário ficar reconfigurando.
+
 
 #
 
 ## Getting Started
+
 #### Atualizando o servidor
     sudo apt update
     sudo apt -y upgrade
