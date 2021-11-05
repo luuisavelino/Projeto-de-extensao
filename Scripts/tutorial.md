@@ -138,13 +138,3 @@ sudo apt -y upgrade
     sudo service telegraf restart
     sudo service influxdb status
     sudo service telegraf status
-
-
-
-
-
-
-
-
-
-
