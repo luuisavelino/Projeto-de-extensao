@@ -76,6 +76,8 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
 
     sudo vim /etc/influxdb/influxdb.conf
 
+Aqui, todas as linhas estarão comentadas com #, tire o # deixando das seguintes instruções:
+
         [http]
             enabled = true
             bind-address = ":8086"
@@ -96,13 +98,20 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
 
 
 
-##### Instalando e configurando o Telegraf
+##### Instalando o Telegraf
 
     sudo apt -y install telegraf
 
 
+##### Configurando o Telegraf
 
+    
     sudo vim /etc/telegraf/telegraf.conf
+    
+Aqui, todas as linhas estarão comentadas com #, tire o # deixando das seguintes instruções:
+
+Algumas linhas abaixo permanecem com o # apenas para auxiliar na procura das linhas :D
+
 
         # Read metrics from MQTT topic(s)
         [[inputs.mqtt_consumer]]
