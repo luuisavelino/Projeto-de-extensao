@@ -14,7 +14,7 @@
     Os dados das condições ambientais será coletada através de microcontroladores
 ⠀
 
-    Estes microcontroladores realizarão a "publicação" dos dados através de tópicos, utilizando a tecnologia MQTT.
+    Os microcontroladores realizarão a "publicação" dos dados através de tópicos, utilizando MQTT.
 ⠀
 
     O Telegraf se "inscreverá" nestes tópicos e encaminhará estes dados para o banco de dados InfluxDB
