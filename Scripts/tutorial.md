@@ -10,11 +10,11 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
 
 ## Getting Started
 
-#### Atualizando o servidor
+### Atualizando o servidor
     sudo apt update
     sudo apt -y upgrade
 
-##### Instalando Docker
+#### Instalando Docker
 
     sudo curl -fsSL https://get.docker.com/ | bash
     sudo docker version
@@ -23,7 +23,7 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
     sudo usermod -aG docker $(whoami) 
 
 
-##### Subindo Grafana pelo Docker
+#### Subindo Grafana pelo Docker
 
     docker volume create grafana-storage
     docker run -d -p 3000:3000 --name grafana --mount type=volume,src=grafana-storage,dst=/var/lib/grafana grafana/grafana-enterprise:8.2.1-ubuntu
@@ -32,7 +32,7 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
     docker container ls
 
 
-##### Instalando o MQTT
+#### Instalando o MQTT
 
     sudo wget http://repo.mosquitto.org/debian/mosquitto-repo.gpg.key
     sudo apt-key add mosquitto-repo.gpg.key
@@ -50,13 +50,13 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
     sudo apt -y install mosquitto-clients
 
 
-##### Tenstando publicação e inscrição do MQTT
+#### Tenstando publicação e inscrição do MQTT
 
     mosquitto_sub -h localhost -t "sensor/temperatura"
     mosquitto_pub -h localhost -t "sensor/temperatura" -m "10"
 
 
-##### Instalação e configurando o InfluxDB
+#### Instalação e configurando o InfluxDB
 
     sudo dpkg-reconfigure tzdata
 
@@ -88,7 +88,7 @@ Aqui, todas as linhas estarão comentadas com #, tire o # deixando das seguintes
 
     sudo ufw allow 8086/tcp
 
-##### Adicionando usuários e database
+#### Adicionando usuários e database
 
     influx -execute "CREATE USER "admin" WITH PASSWORD 'adminInflux@projeto' WITH ALL PRIVILEGES;"
     influx -execute "CREATE USER "telegraf" WITH PASSWORD 'telegraf@projeto' WITH ALL PRIVILEGES;"
@@ -98,12 +98,12 @@ Aqui, todas as linhas estarão comentadas com #, tire o # deixando das seguintes
 
 
 
-##### Instalando o Telegraf
+#### Instalando o Telegraf
 
     sudo apt -y install telegraf
 
 
-##### Configurando o Telegraf
+#### Configurando o Telegraf
 
     
     sudo vim /etc/telegraf/telegraf.conf
@@ -154,18 +154,27 @@ Algumas linhas abaixo permanecem com o # apenas para auxiliar na procura das lin
     sudo service influxdb status
     sudo service telegraf status
     
-#### Gerando dados de teste
-##### Este item ainda não foi finalizado :/
+### Gerando dados de teste
 
     cd ~
     sudo mkdir shell_script
     cd shell_script/
     sudo vim gerarDados.sh
 
-        #!/bin/sh
+        #!/bin/bash
+        while : ; do
+            SENSOR_TEMPERATURA=$((RANDOM%35+10))        # Gerando valores aleatorios de 10 à 35
+            SENSOR_PRESSAO=$((RANDOM%100+1))            # Gerando valores aleatorios de 1 à 100
 
-        while :;
-        do;
-        done
+            mosquitto_pub -h localhost -t "sensor/temperatura" -m "$SENSOR_TEMPERATURA";    # Publicando
+            mosquitto_pub -h localhost -t "sensor/pressao" -m "$SENSOR_PRESSAO";            
 
+
+            #echo "temperatura: $SENSOR_TEMPERATURA";   # Dando um print do valor na tela
+            #echo "pressao: $SENSOR_PRESSAO";           # Caso queira imprimir, descomente as linhas 
+
+
+            sleep 20;       # "Dormindo" por 20 segundos
+            done            # Fim do Script
+        
     ./gerarDados.sh
