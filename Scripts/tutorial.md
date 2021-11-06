@@ -173,8 +173,8 @@ Algumas linhas abaixo permanecem com o # apenas para auxiliar na procura das lin
             #echo "temperatura: $SENSOR_TEMPERATURA";   # Dando um print do valor na tela
             #echo "pressao: $SENSOR_PRESSAO";           # Caso queira imprimir, descomente as linhas 
 
-
             sleep 20;       # "Dormindo" por 20 segundos
-            done            # Fim do Script
+
+        done            # Fim do Script
         
     ./gerarDados.sh
