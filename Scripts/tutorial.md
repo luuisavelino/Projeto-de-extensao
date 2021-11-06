@@ -176,5 +176,6 @@ Algumas linhas abaixo permanecem com o # apenas para auxiliar na procura das lin
             sleep 20;       # "Dormindo" por 20 segundos
 
         done            # Fim do Script
-        
-    ./gerarDados.sh
+    
+    sudo chmod 755 gerarDados.sh
+    ./gerarDados.sh &
