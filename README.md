@@ -11,19 +11,15 @@
 ## Desenvolvimento
 
 ### Em suma, será desenvolvido as seguintes integrações:
-    Os dados das condições ambientais será coletada através de microcontroladores
-⠀
+    
+Os dados das condições ambientais será coletada através de microcontroladores
 
-    Os microcontroladores realizarão a "publicação" dos dados através de tópicos, utilizando MQTT.
-⠀
+Os microcontroladores realizarão a "publicação" dos dados através de tópicos, utilizando MQTT.
 
-    O Telegraf se "inscreverá" nestes tópicos e encaminhará estes dados para o banco de dados InfluxDB
-⠀
+O Telegraf se "inscreverá" nestes tópicos e encaminhará estes dados para o banco de dados InfluxDB
 
-    InluxDB armazenará estes dados e, para a exibição destes, utiliza-se o Grafana. 
-⠀
+InluxDB armazenará estes dados e, para a exibição destes, utiliza-se o Grafana. 
 
-    Sobe-se um Docker com o Grafana que fecha conexão com o banco de dados
-⠀
+Sobe-se um Docker com o Grafana que fecha conexão com o banco de dados
 
-    Configura-se as Dashboards do Grafana para cada escola municipal.
+Configura-se as Dashboards do Grafana para cada escola municipal.
