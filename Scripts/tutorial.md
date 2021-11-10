@@ -26,9 +26,7 @@ Atenção: Durante o processo, configuraremos alguns IPs, deste modo é interess
 #### Subindo Grafana pelo Docker
 
     docker volume create grafana-storage
-    docker run -d -p 3000:3000 --name grafana --mount type=volume,src=grafana-storage,dst=/var/lib/grafana grafana/grafana-enterprise:8.2.1-ubuntu
-
-    docker update --restart unless-stopped grafana
+    docker run -d -p 3000:3000 --name grafana --restart always --mount type=volume,src=grafana-storage,dst=/var/lib/grafana grafana/grafana-enterprise:8.2.1-ubuntu
     docker container ls
 
 
