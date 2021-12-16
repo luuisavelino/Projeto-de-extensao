@@ -1,0 +1,62 @@
+version: '3.1'
+
+services:
+        influxdb:
+                image: influxdb:1.8.3
+                container_name: influxdb
+                ports:
+                        - "8083:8083"
+                        - "8086:8086"
+                        - "8090:8090"
+                        - "25826:25826/udp"
+                networks:
+                        - production-network
+                volumes:
+                        - influxdb-storage:/var/lib/influxdb
+
+        telegraf:
+                image: telegraf:latest
+                container_name: telegraf
+                links:
+                        - influxdb
+                networks:
+                        - production-network
+                volumes:
+                        - ./telegraf.conf:/etc/telegraf/telegraf.conf
+
+        grafana:
+                image: grafana/grafana:latest
+                container_name: grafana
+                ports:
+                        - "3000:3000"
+                links:
+                        - influxdb
+                depends_on:
+                        - influxdb
+                networks:
+                        - production-network
+                volumes:
+                        - ./grafana.ini:/etc/grafana/grafana.ini
+                        - grafana-storage:/var/lib/grafana
+
+        mosquitto:
+                image: eclipse-mosquitto
+                hostname: mosquitto
+                container_name: mosquitto
+                ports:
+                        - "1883:1883"
+                        - "9001:9001"
+                networks:
+                        - production-network
+                volumes:
+                        - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
+                        
+volumes:
+        influxdb-storage:
+        grafana-storage:
+        telegraf-conf:
+
+networks:
+        production-network:
+              driver: bridge
+

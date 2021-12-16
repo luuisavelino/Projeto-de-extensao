@@ -23,3 +23,23 @@ InluxDB armazenará estes dados e, para a exibição destes, utiliza-se o Grafan
 Sobe-se um Docker com o Grafana que fecha conexão com o banco de dados
 
 Configura-se as Dashboards do Grafana para cada escola municipal.
+
+
+## How To Use
+
+### Docker
+
+> Clone o repositório em uma pasta no servidor
+
+> Entre na pasta /Scripts/Docker
+
+> Execute o comando
+
+    sudo docker-compose up -d
+
+    ./gerarValores.sh &
+
+
+### Sem Docker
+
+> Siga o passo a passo do arquivo /Scripts/SemDocker/tutorial.md dentro do servidor
