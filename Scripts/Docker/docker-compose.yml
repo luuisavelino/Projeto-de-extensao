@@ -58,7 +58,6 @@ services:
 volumes:
         influxdb-storage:
         grafana-storage:
-        telegraf-conf:
 
 networks:
         production-network:
